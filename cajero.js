@@ -1,14 +1,27 @@
 var billetes = [];
-billetes.push(new Billete(100, 3));
-billetes.push(new Billete(50, 3));
-billetes.push(new Billete(20, 4));
-billetes.push(new Billete(10, 1));
+billetes.push( new Billete(100, 3) );
+billetes.push( new Billete(50, 4) );
+billetes.push( new Billete(20, 5) );
+billetes.push( new Billete(10, 1) );
+billetes.push( new Billete(5, 2) );
 
-var dinero = 160;
+
+var input_dinero = document.getElementById("money");
+var btn_expender = document.getElementById("btn");
+var parrafo = document.getElementById("parrafo");
+var transaccion = 1;
 var entregar = [];
 
+
+btn_expender.addEventListener("click", extraer_dinero);
+
+// Esta funcion se encargara de detectar cuales y cuantos billetes necesitas
+// para obtener el valor pedido por el usuario
 function extraer_dinero()
 {
+  entregar = [];
+  var dinero = parseInt(input_dinero.value);
+
   for (var i in billetes) {
     var valor = billetes[i].valor;
     var cantidad = billetes[i].cantidad;
@@ -28,11 +41,27 @@ function extraer_dinero()
     }
   }
 
-  if (dinero !== 0) {
-    alert("No puedo procesar esa cantidad.");
+  // Esta parte de la funcion se encarga de manejar el plasmado de la info
+  // en el parrafo segun el numero de transaccion y si acepta la cantidad
+  // ingresada o no
+  if (dinero == 0)
+  {
+    parrafo.innerHTML =
+    "<strong>" + "En la transaccion numero " + transaccion + ": <strong/>" + "<br />";
+    transaccion++;
+
+    for (var i = 0; i < entregar.length; i++)
+    {
+      if (entregar[i].cantidad !== 0)
+      {
+        parrafo.innerHTML +=
+        entregar[i].cantidad + " billetes de " + entregar[i].valor + "<br />";
+      }
+    }
   }
-
-  return entregar;
+  else
+  {
+    parrafo.innerHTML =
+    "No puedo procesar esa cantidad.";
+  }
 }
-
-var cuantos_papeles = extraer_dinero();

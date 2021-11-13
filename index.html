@@ -3,17 +3,45 @@
   <head>
     <meta charset="utf-8">
     <title>Cajero Automático</title>
+
+    <style media="screen">
+      div.cajero
+      {
+        width: 300px;
+        height: 200px;
+        border: 5px solid blue;
+        box-shadow: 10px 10px 10px blue;
+      }
+      input, button
+      {
+        border: none;
+        padding: 10px 20px;
+      }
+      button#btn
+      {
+        background-color: blue;
+        color: white;
+        border-radius: 5px;
+      }
+      input#money
+      {
+        border-bottom: 1px solid blue;
+        margin-right: 10px;
+      }
+    </style>
   </head>
   <body>
 
     <h1><strong>Wellcome to the fucking Cajero Automático</strong></h1>
-    <img src="" alt="Imagen del cajero">
+    <div class="cajero"></div>
 
     <br />
-    
-    <input type="number" name="" value="">
-    <input type="button" name="" value="EXTRAER DINERO">
 
+    <input id="money" type="number" name="" value="">
+    <button id="btn" type="button" name="button">EXTRAER DINERO</button>
+    <p id="parrafo"></p>
+
+    <script src="clases.js" charset="utf-8"></script>
     <script src="cajero.js" charset="utf-8"></script>
   </body>
 </html>
