@@ -9,35 +9,103 @@ billetes.push( new Billete(5, 2) );
 var input_dinero = document.getElementById("money");
 var btn_expender = document.getElementById("btn");
 var parrafo = document.getElementById("parrafo");
+
+var txt_caja = document.getElementById("reflejo_caja");
+var txt_transaccion = document.getElementById("reflejo_transaccion");
+var txt_expendido = document.getElementById("reflejo_expendido");
+
 var transaccion = 1;
+var valor_caja = 0;
 var entregar = [];
+var expendido = 0;
+var suma_expendido = 0;
+
+window.addEventListener("load", reevaluar);
+window.addEventListener("load", total_caja);
+btn_expender.addEventListener("click", comprobar);
 
 
-btn_expender.addEventListener("click", extraer_dinero);
+
+
+function reevaluar()
+{
+  valor_caja = 0;
+
+  for (var i of billetes)
+  {
+    valor_caja += i.valor * i.cantidad;
+  }
+}
+
+
+function comprobar()
+{
+  var dinero = parseInt(input_dinero.value);
+
+
+  if (dinero <= valor_caja)
+  {
+    if (dinero !== 0)
+    {
+      extraer_dinero(dinero);
+    }
+    else if (valor_caja == 0)
+    {
+      parrafo.innerHTML =
+      "Lo siento, pero me he quedado sin dinero.";
+    }
+    else if (dinero == 0)
+    {
+      parrafo.innerHTML =
+      "Lo siento, esa cantidad es muy baja.";
+    }
+  }
+  else
+  {
+    if (valor_caja == 0)
+    {
+      parrafo.innerHTML =
+      "Lo siento, pero me he quedado sin dinero.";
+    }
+    else if (valor_caja !== 0)
+    {
+      parrafo.innerHTML =
+      "No puedo procesar esa cantidad porque es muy alta. Prueba con una cantidad igual o menor a: " + valor_caja;
+    }
+  }
+}
 
 // Esta funcion se encargara de detectar cuales y cuantos billetes necesitas
 // para obtener el valor pedido por el usuario
-function extraer_dinero()
+function extraer_dinero(dinero)
 {
   entregar = [];
-  var dinero = parseInt(input_dinero.value);
+  expendido = 0;
 
-  for (var i in billetes) {
+
+  for (var i in billetes)
+  {
     var valor = billetes[i].valor;
     var cantidad = billetes[i].cantidad;
 
-    if (dinero > 0) {
+    if (dinero > 0)
+    {
       var division = Math.floor(dinero / valor);
 
-      if (division > cantidad) {
+      if (division > cantidad)
+      {
         var papeles = cantidad;
-      } else {
+      }
+      else
+      {
         var papeles = division;
       }
 
-      entregar.push(new Billete(valor, papeles));
+      entregar.push( new Billete(valor, papeles) );
 
       dinero = dinero - (papeles * valor);
+
+      retirar_caja(i);
     }
   }
 
@@ -50,6 +118,13 @@ function extraer_dinero()
     "<strong>" + "En la transaccion numero " + transaccion + ": <strong/>" + "<br />";
     transaccion++;
 
+
+    for (var i of entregar)
+    {
+      expendido += i.valor * i.cantidad;
+    }
+
+
     for (var i = 0; i < entregar.length; i++)
     {
       if (entregar[i].cantidad !== 0)
@@ -58,6 +133,14 @@ function extraer_dinero()
         entregar[i].cantidad + " billetes de " + entregar[i].valor + "<br />";
       }
     }
+
+    suma_expendido += expendido;
+
+    reevaluar();
+    total_caja();
+    total_transaccion();
+    total_expendido();
+
   }
   else
   {
