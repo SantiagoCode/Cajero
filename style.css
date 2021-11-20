@@ -1,0 +1,26 @@
+div.container
+{
+  display: flex;
+}
+div.hola
+{
+  width: 49%;
+  min-width: 300px;
+  display: inline-block;
+}
+input, button
+{
+  border: none;
+  padding: 10px 20px;
+}
+button#btn
+{
+  background-color: blue;
+  color: white;
+  border-radius: 5px;
+}
+input#money
+{
+  border-bottom: 1px solid blue;
+  margin-right: 10px;
+}

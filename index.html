@@ -3,44 +3,44 @@
   <head>
     <meta charset="utf-8">
     <title>Cajero Automático - Copia</title>
-
-    <style media="screen">
-      input, button
-      {
-        border: none;
-        padding: 10px 20px;
-      }
-      button#btn
-      {
-        background-color: blue;
-        color: white;
-        border-radius: 5px;
-      }
-      input#money
-      {
-        border-bottom: 1px solid blue;
-        margin-right: 10px;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
 
-    <h1><strong>ATM</strong></h1>
-    <p>
-      <img src="atm.webp" alt="atm">
-    </p>
+    <h1>
+      <strong>
+        ATM
+      </strong>
+    </h1>
 
-    <p>
-      <input id="money" type="number" name="" value="">
-      <button id="btn" type="button" name="button">EXTRAER DINERO</button>
-      <p id="parrafo"></p>
-    </p>
+    <div class="container">
 
-    <p>
-      <p id="reflejo_caja"></p>
-      <p id="reflejo_transaccion"></p>
-      <p id="reflejo_expendido"></p>
-    </p>
+      <div class="hola">
+        <p>
+          <img src="atm.webp" alt="atm">
+        </p>
+        <p>
+          <input id="money" type="number" name="" value="">
+          <button id="btn" type="button" name="button">
+            EXTRAER DINERO
+          </button>
+        </p>
+      </div>
+
+      <div class="hola">
+        <p>
+          <p id="parrafo"></p>
+          <p id="reflejo_caja"></p>
+          <p id="reflejo_transaccion"></p>
+          <p id="reflejo_expendido"></p>
+          <p id="reflejo_papeles"></p>
+        </p>
+
+      </div>
+    </div>
+
+
+
 
 
     <script src="clases.js" charset="utf-8"></script>

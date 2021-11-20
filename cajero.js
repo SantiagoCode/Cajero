@@ -13,6 +13,7 @@ var parrafo = document.getElementById("parrafo");
 var txt_caja = document.getElementById("reflejo_caja");
 var txt_transaccion = document.getElementById("reflejo_transaccion");
 var txt_expendido = document.getElementById("reflejo_expendido");
+var txt_papeles = document.getElementById("reflejo_papeles");
 
 var transaccion = 1;
 var valor_caja = 0;
@@ -22,6 +23,7 @@ var suma_expendido = 0;
 
 window.addEventListener("load", reevaluar);
 window.addEventListener("load", total_caja);
+window.addEventListener("load", papeles);
 btn_expender.addEventListener("click", comprobar);
 
 
